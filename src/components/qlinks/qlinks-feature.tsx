@@ -1,15 +1,16 @@
-'use client'
+"use client";
 
-import { useWallet } from '@solana/wallet-adapter-react'
-import { WalletButton } from '../solana/solana-provider'
-import { AppHero, ellipsify } from '../ui/ui-layout'
-import { ExplorerLink } from '../cluster/cluster-ui'
-import { useQlinksProgram } from './qlinks-data-access'
-import { QlinksCreate, QlinksList } from './qlinks-ui'
+import { useWallet } from "@solana/wallet-adapter-react";
+import { WalletButton } from "../solana/solana-provider";
+import { AppHero, ellipsify } from "../ui/ui-layout";
+import { ExplorerLink } from "../cluster/cluster-ui";
+import { useQlinksProgram } from "./qlinks-data-access";
+import { QlinksCreate, QlinksList } from "./qlinks-ui";
+import { AccountBalance } from "../account/account-ui";
 
 export default function QlinksFeature() {
-  const { publicKey } = useWallet()
-  const { programId } = useQlinksProgram()
+  const { publicKey } = useWallet();
+  const { programId } = useQlinksProgram();
 
   return publicKey ? (
     <div>
@@ -19,11 +20,16 @@ export default function QlinksFeature() {
           'Create a new account by clicking the "Create" button. The state of a account is stored on-chain and can be manipulated by calling the program\'s methods (increment, decrement, set, and close).'
         }
       >
+        <AccountBalance address={publicKey} />
         <p className="mb-6">
-          <ExplorerLink path={`account/${programId}`} label={ellipsify(programId.toString())} />
+          <ExplorerLink
+            path={`account/${programId}`}
+            label={ellipsify(programId.toString())}
+          />
         </p>
-        <QlinksCreate />
+        {/*<QlinksCreate />*/}
       </AppHero>
+      {/* MCQ Creation  */}
       <QlinksList />
     </div>
   ) : (
@@ -34,5 +40,5 @@ export default function QlinksFeature() {
         </div>
       </div>
     </div>
-  )
+  );
 }
