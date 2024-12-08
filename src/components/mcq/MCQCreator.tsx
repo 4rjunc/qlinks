@@ -1,5 +1,7 @@
+// @ts-nocheck
+
 import React, { useState } from "react";
-//import { Input } from "@/components/ui/input";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Plus, Trash2 } from "lucide-react";
@@ -20,19 +22,16 @@ const SingleMCQ = ({ questionData, onUpdate, onDelete, index }) => {
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">Question {index + 1}</h3>
           {index > 0 && (
-            <button //variant="destructive"
-              // size="sm"
-              onClick={onDelete}
-            >
+            <Button variant="destructive" size="sm" onClick={onDelete}>
               <Trash2 className="h-4 w-4" />
-            </button>
+            </Button>
           )}
         </div>
 
         {/* Question Input */}
         <div className="mb-4">
           <label className="block mb-2 font-medium">Question</label>
-          <input
+          <Input
             value={questionData.question}
             onChange={(e) =>
               onUpdate({
@@ -50,7 +49,7 @@ const SingleMCQ = ({ questionData, onUpdate, onDelete, index }) => {
           <label className="block mb-2 font-medium">Options</label>
           {questionData.options.map((option, optIndex) => (
             <div key={optIndex} className="flex items-center space-x-2 mb-2">
-              <input
+              <Input
                 value={option}
                 onChange={(e) => handleOptionChange(optIndex, e.target.value)}
                 placeholder={`Option ${optIndex + 1}`}

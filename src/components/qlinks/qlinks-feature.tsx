@@ -7,6 +7,7 @@ import { ExplorerLink } from "../cluster/cluster-ui";
 import { useQlinksProgram } from "./qlinks-data-access";
 import { QlinksCreate, QlinksList } from "./qlinks-ui";
 import { AccountBalance } from "../account/account-ui";
+import MCQCreator from "../mcq/MCQCreator";
 
 export default function QlinksFeature() {
   const { publicKey } = useWallet();
@@ -27,6 +28,7 @@ export default function QlinksFeature() {
             label={ellipsify(programId.toString())}
           />
         </p>
+        <MCQCreator />
         {/*<QlinksCreate />*/}
       </AppHero>
       {/* MCQ Creation  */}
